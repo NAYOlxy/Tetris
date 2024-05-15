@@ -2,6 +2,8 @@
 #include <Windows.h>
 #include <thread>
 #include <vector>
+#include <random>
+#include <time.h>
 using namespace std;
 
 wstring tertromino[7];
@@ -54,7 +56,8 @@ bool DoesPieceFit(int nTetromino, int nRotation, int nPosX, int nPosY)
 
 int main()
 {
-
+	std::random_device rd;
+	std::mt19937 gen(rd());
 	//Create assets
 
 	tertromino[0].append(L"..X.");
@@ -196,7 +199,7 @@ int main()
 				nCurrentX = nFieldWitdth / 2;
 				nCurrentY = 0;
 				nCurrentRotation = 0;
-				nCurrentPiece = rand() % 7;
+				nCurrentPiece = gen() % 7;
 
 				// if peice does not fit
 				bGameOver = !DoesPieceFit(nCurrentPiece, nCurrentRotation, nCurrentX, nCurrentY);
